@@ -4,22 +4,12 @@ import com.vukach.vuksmod.VukachMod;
 import com.vukach.vuksmod.block.custom.ModTrashBagBlock;
 import com.vukach.vuksmod.item.ModCreativeModeTab;
 import com.vukach.vuksmod.item.ModItems;
-import net.minecraft.network.chat.contents.TranslatableContents;
-import net.minecraft.world.item.Item;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.*;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraftforge.common.property.Properties;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -36,30 +26,34 @@ public class ModBlocks {
     public static final RegistryObject<ModTrashBagBlock> TRASH_BAG = registerBlock("trash_bag",
             () -> new ModTrashBagBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.VUKS_TAB);
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
-                                                                            CreativeModeTab tab, String tooltipKey) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(tab)) {
-            @Override
-            public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
-                pTooltip.add((Component) new TranslatableContents(tooltipKey));
-            }
-        });
-    }
 
+	/** Register Blocks without Tooltips*/
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab);
         return toReturn;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
-                                                                            CreativeModeTab tab) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(tab)));
-    }
+    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
+		ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+	}
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-    }
+	/** Register Blocks with Tooltip */
+	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, String tooltipKey) {
+		RegistryObject<T> toReturn = BLOCKS.register(name, block);
+		registerBlockItem(name, toReturn, tab, tooltipKey);
+		return toReturn;
+	}
+
+	private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab, String tooltipKey) {
+		ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)) {
+			@Override
+			public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+				pTooltip.add(Component.translatable(tooltipKey));
+
+			}
+		});
+	}
+
+    public static void register(IEventBus eventBus) { BLOCKS.register(eventBus); }
 }
