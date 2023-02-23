@@ -1,0 +1,5 @@
+{
+  "type": "vuksmod:vegetal",
+  "biomes": "#forge:is_plains",
+  "features": "trash_bag_placed"
+}
