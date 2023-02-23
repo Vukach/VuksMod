@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "p": {
+      "item": "minecraft:paper"
+    },
+    "P": {
+      "item": "vuksmod:plastic_plate"
+    }},
+  "pattern": [
+    " P ",
+    " P ",
+    " p "
+  ],
+  "result": {
+    "item": "vuksmod:plastic_batten"
+  }
+}

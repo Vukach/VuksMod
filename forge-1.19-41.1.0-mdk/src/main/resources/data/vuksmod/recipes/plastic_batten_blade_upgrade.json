@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "vuksmod:plastic_batten_metal_upgrade"
+    },
+    "M": {
+      "item": "vuksmod:metal_blade"
+    }},
+  "pattern": [
+    "MMM",
+    "MBM",
+    "MMM"
+  ],
+  "result": {
+    "item": "vuksmod:plastic_batten_blade_upgrade"
+  }
+}

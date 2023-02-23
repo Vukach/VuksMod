@@ -36,6 +36,9 @@ public class ModBlocks {
     public static final RegistryObject<ModTrashBagBlock> TRASH_BAG = registerBlock("trash_bag",
             () -> new ModTrashBagBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.VUKS_TAB);
 
+    public static final RegistryObject<ModTrashBagBlock> ATM_RECEIVER = registerBlock("atm_receiver",
+            () -> new ModTrashBagBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.VUKS_TAB);
+
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
                                                                             CreativeModeTab tab, String tooltipKey) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
