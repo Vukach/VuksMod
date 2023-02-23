@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "vuksmod:oil_bucket"
+  },
+  "result": "vuksmod:plastic_plate_stack",
+  "experience": 5,
+  "cookingtime": 300
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "ingridient",
+  "key": {
+    "P": {
+      "item": "vuksmod:plastic_plate"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "G":{
+      "item": "minecraft:green_dye"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "GCG",
+    "PPP"
+  ],
+  "result": {
+    "item": "vuksmod:creditcard"
+  }
+}

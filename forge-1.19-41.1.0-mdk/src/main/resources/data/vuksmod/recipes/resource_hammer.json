@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "M": {
+      "item": "vuksmod:metal_plate"
+    }},
+  "pattern": [
+    "   ",
+    " M ",
+    " S "
+  ],
+  "result": {
+    "item": "vuksmod:resource_hammer"
+  }
+}

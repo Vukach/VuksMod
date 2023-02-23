@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "vuksmod:metal_stick"
+    },
+    "B": {
+      "item": "vuksmod:metal_blade"
+    }},
+  "pattern": [
+    "   ",
+    " B ",
+    " S "
+  ],
+  "result": {
+    "item": "vuksmod:metal_knife"
+  }
+}
