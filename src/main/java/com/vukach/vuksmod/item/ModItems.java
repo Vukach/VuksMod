@@ -3,6 +3,7 @@ package com.vukach.vuksmod.item;
 import com.vukach.vuksmod.VukachMod;
 import com.vukach.vuksmod.item.custom.CreditCard;
 import com.vukach.vuksmod.item.custom.PlasticArmorItem;
+import com.vukach.vuksmod.item.custom.Plastic_Ripper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -47,16 +48,15 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
 
     public static final RegistryObject<SwordItem> PLASTIC_BATTEN = ITEMS.register("plastic_batten",
-            () -> new SwordItem(Tiers.DIAMOND, 5, 5f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
+            () -> new SwordItem(Tiers.IRON, 5, 5f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
 
     public static final RegistryObject<SwordItem> PLASTIC_BATTEN_METAL = ITEMS.register("plastic_batten_metal_upgrade",
-            () -> new SwordItem(Tiers.DIAMOND, 7, 2f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
+            () -> new SwordItem(Tiers.IRON, 7, 2f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
 
     public static final RegistryObject<SwordItem> PLASTIC_BATTEN_PICKAXE = ITEMS.register("plastic_batten_pickaxe_upgrade",
-            () -> new SwordItem(Tiers.DIAMOND, 10, 0f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
-
+            () -> new Plastic_Ripper(new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
     public static final RegistryObject<SwordItem> PLASTIC_BATTEN_SWORD = ITEMS.register("plastic_batten_sword_upgrade",
-            () -> new SwordItem(Tiers.DIAMOND, 10, 0f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
+            () -> new SwordItem(Tiers.IRON, 10, 0f, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
 
     public static final RegistryObject<PlasticArmorItem> PLASTIC_HELMET = ITEMS.register("plastic_helmet",
             () -> new PlasticArmorItem(ModArmorMaterials.Plastic, EquipmentSlot.HEAD, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));

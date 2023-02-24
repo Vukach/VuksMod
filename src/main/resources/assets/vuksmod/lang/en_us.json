@@ -1,6 +1,17 @@
 {
   "item.vuksmod.creditcard": "Credit Card",
+  "item.vuksmod.oil_bucket": "Oil Bucket",
   "item.vuksmod.plastic_shard": "Plastic Shard",
+  "item.vuksmod.plastic_plate": "Plastic Plate",
+  "item.vuksmod.plastic_plate_stack": "Plastic Plate Stack",
+  "item.vuksmod.metal_plate": "Metal Plate",
+  "item.vuksmod.metal_stick": "Metal Stick",
+  "item.vuksmod.metal_blade": "Metal Blade",
+  "item.vuksmod.metal_knife": "Metal Knife",
+  "item.vuksmod.resource_hammer": "Metal Hammer",
+
+  "item.vuksmod.trash_bag": "Trash Bag",
+
   "item.vuksmod.plastic_batten": "Plastic Batten",
   "item.vuksmod.plastic_batten_metal_upgrade": "Plastic Face-Smasher",
   "item.vuksmod.plastic_batten_pickaxe_upgrade": "Plastic Ripper",
