@@ -3,7 +3,9 @@
   "item.vuksmod.plastic_shard": "Plastic Shard",
   "item.vuksmod.plastic_batten": "Plastic Batten",
   "item.vuksmod.plastic_batten_metal_upgrade": "Plastic Face-Smasher",
-  "item.vuksmod.plastic_batten_blade_upgrade": "Plastic Ripper",
+  "item.vuksmod.plastic_batten_pickaxe_upgrade": "Plastic Ripper",
+  "item.vuksmod.plastic_batten_sword_upgrade": "Plastic Destroyer",
+
   "item.vuksmod.plastic_helmet" : "Plastic Helmet v1",
 
   "itemGroup.vukstab": "Vukach's Mod"
