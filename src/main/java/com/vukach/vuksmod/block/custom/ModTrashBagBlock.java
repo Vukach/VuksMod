@@ -25,9 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class ModTrashBagBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public ModTrashBagBlock(Properties properties) {
-        super(properties);
-    }
+    public ModTrashBagBlock(Properties properties) { super(properties); }
 
     private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 8, 16);
 
@@ -55,16 +53,13 @@ public class ModTrashBagBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING);
-    }
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) { pBuilder.add(FACING); }
 
     /* BLOCK ENTITY */
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) { return null; }
+}
 
     @Nullable
     @Override
