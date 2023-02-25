@@ -27,7 +27,9 @@ public class ModTrashBagBlock extends BaseEntityBlock {
 
     public ModTrashBagBlock(Properties properties) { super(properties); }
 
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 8, 16);
+    private static final VoxelShape SHAPE =  Block.box(1, 0, 1, 15, 13, 15);
+
+	/* RENDERING */
 
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel,
