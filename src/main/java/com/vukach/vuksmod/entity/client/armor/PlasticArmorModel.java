@@ -9,7 +9,7 @@ public class PlasticArmorModel extends AnimatedGeoModel<PlasticArmorItem> {
 
     @Override
     public ResourceLocation getModelResource(PlasticArmorItem object) {
-        return new ResourceLocation(VukachMod.MOD_ID, "geo/plastic_armor.geo.json");
+        return new ResourceLocation(VukachMod.MOD_ID, "geo/plastic_armor_v2.geo.json");
     }
 
     @Override

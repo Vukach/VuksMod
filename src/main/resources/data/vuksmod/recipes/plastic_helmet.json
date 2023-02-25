@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "P": {
+      "item": "vuksmod:plastic_plate"
+    }
+  },
+  "pattern": [
+    "LPL",
+    "PGP",
+    "   "
+  ],
+  "result": {
+    "item": "vuksmod:plastic_helmet"
+  }
+}

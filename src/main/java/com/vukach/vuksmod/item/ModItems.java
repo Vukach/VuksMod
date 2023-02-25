@@ -61,6 +61,9 @@ public class ModItems {
     public static final RegistryObject<PlasticArmorItem> PLASTIC_HELMET = ITEMS.register("plastic_helmet",
             () -> new PlasticArmorItem(ModArmorMaterials.Plastic, EquipmentSlot.HEAD, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
 
+    public static final RegistryObject<PlasticArmorItem> PLASTIC_CHEST = ITEMS.register("plastic_chest",
+            () -> new PlasticArmorItem(ModArmorMaterials.Plastic, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
