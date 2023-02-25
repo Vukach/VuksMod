@@ -1,22 +1,15 @@
 package com.vukach.vuksmod.block.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +30,16 @@ public class ModTrashBagBlock extends BaseEntityBlock {
         return SHAPE;
     }
 
-    /* FACING */
+	@Override
+	public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) { return RenderShape.MODEL; }
+
+	@Override
+	public boolean skipRendering(@NotNull BlockState blockState, @NotNull BlockState neighborState, @NotNull Direction pDirection) {
+		return false; // will prevent the "Spectator View" if the block faces are smaller than their neighbor
+	}
+
+
+	/* FACING */
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -61,11 +63,4 @@ public class ModTrashBagBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) { return null; }
-}
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-        return null;
-    }
 }
