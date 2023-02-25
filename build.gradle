@@ -13,11 +13,11 @@ plugins {
     id 'eclipse'
 }
 
-version = '0.1-1.19'
-group = 'com.vukach' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "${mod_version}-${mc_version}"
+group = "${mod_group}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 
 java {
-    archivesBaseName = 'vuksmod'
+    archivesBaseName = "${mod_name}"
 
     // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -144,7 +144,10 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19-41.1.0'
 
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.19')
+    // minecraft 'net.minecraftforge:forge:1.19.2-43.2.6'
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.40')
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -163,12 +166,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "vukachmod",
-                "Specification-Vendor"    : "vukachmodsareus",
+                "Specification-Title"     : "${mod_name}",
+                "Specification-Vendor"    : "${mod_owner}",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "vukachmodsareus",
+                "Implementation-Vendor"   : "${mod_owner}",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
