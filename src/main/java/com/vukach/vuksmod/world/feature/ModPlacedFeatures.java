@@ -2,8 +2,10 @@ package com.vukach.vuksmod.world.feature;
 
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -16,9 +18,13 @@ public class ModPlacedFeatures {
     public static final DeferredRegister<PlacedFeature> MOD_PLACED_FEATURES =
             DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, MOD_ID);
 
-    public static final RegistryObject<PlacedFeature> TRASH_BAG_PLACED = PLACED_FEATURES.register("trash_bag_placed",
-            () -> new PlacedFeature((Holder<ConfiguredFeature<?,?>>)(Holder<? extends ConfiguredFeature<?,?>>)
-                    ModConfiguredFeatures.TRASH_BAG, List.of(RarityFilter.onAverageOnceEvery(16),
+	public static final RegistryObject<PlacedFeature> TRASH_BAG_CHECKED = MOD_PLACED_FEATURES.register("trash_bag_checked",
+			() -> new PlacedFeature(ModConfiguredFeatures.TRASH_BAG.getHolder().get(),
+					List.of(PlacementUtils.countExtra(2,0.25f, 1))));
+
+    public static final RegistryObject<PlacedFeature> TRASH_BAG_PLACED = MOD_PLACED_FEATURES.register("trash_bag_placed",
+            () -> new PlacedFeature(ModConfiguredFeatures.TRASH_BAG_SPAWN.getHolder().get(),
+					List.of(RarityFilter.onAverageOnceEvery(16),
                     InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
 
