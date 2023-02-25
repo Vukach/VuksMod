@@ -11,5 +11,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "VuksMod-1.19-Forge"
+rootProject.name = "VuksMod-1.19.2-Forge"
 // include('Common', 'Forge', 'Fabric')
