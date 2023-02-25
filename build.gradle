@@ -137,7 +137,17 @@ repositories {
     //     dir 'libs'
     // }
 
-    maven { name = "GeckoLibs"; url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+    maven { name = "GeckoLib"; url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+
+    // JEI
+    maven { name = "Progwm16 JEI maven"; url = "https://dvs1.progwml6.com//files/maven/" }
+    // location of the maven that hosts JEI files since January 2023
+    maven { name = "Jared's maven";     url = "https://maven.blamejared.com/" }
+    // JEI fall back
+    maven { name = "ModMaven";          url = "https://modmaven.dev" }
+
+    // Maven via Curse-Maven & CurseForge
+    maven { name = "Curse Maven";       url = "https://cursemaven.com"; content { includeGroup "curse.maven" } }
 }
 
 dependencies {
@@ -162,6 +172,31 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    // JEI at compiling
+    // compileOnly fg.deobf("mezz.jei:jei-${minecraftVersion}:${jeiVersion}:api")
+    // JEI at runtime
+    // runtimeOnly fg.deobf("mezz.jei:jei-${mcMappingVersion}-forge:${jeiVersion}")
+    // JEI - Just Enough Items as implementation
+    // implementation fg.deobf("curse.maven:jei-238222:3838014")
+    runtimeOnly fg.deobf("curse.maven:jei-${jeiVersionCF}")
+
+    // Catalogue
+    runtimeOnly fg.deobf("curse.maven:catal-${catalVersionCF}")
+
+    // Configured
+    runtimeOnly fg.deobf("curse.maven:conf-${confVersionCF}")
+
+    // Jade (Hwyla/Waila Fork)
+    runtimeOnly fg.deobf("curse.maven:jade-${jadeVersionCF}")
+
+    // ATM -  Simple Recipes (JMSR) & Slabs 'n Stairs
+    runtimeOnly fg.deobf("curse.maven:atmjmsr-${atmjmsrVersionCF}")
+    // runtimeOnly fg.deobf("curse.maven:sns-${snsVersionCF}")
+
+    // Xaero's World- and Mini Maps
+    runtimeOnly fg.deobf("curse.maven:xWmap-${xWmapVersionCF}")
+    runtimeOnly fg.deobf("curse.maven:xMmap-${xMmapVersionCF}")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
