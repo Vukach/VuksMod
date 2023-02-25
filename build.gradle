@@ -60,10 +60,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'vukachmod'
+            property 'forge.enabledGameTestNamespaces', 'vuksmod'
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -76,10 +76,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'vukachmod'
+            property 'forge.enabledGameTestNamespaces', 'vuksmod'
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -95,10 +95,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'vukachmod'
+            property 'forge.enabledGameTestNamespaces', 'vuksmod'
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -112,10 +112,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'vukachmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'vuksmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
