@@ -22,7 +22,5 @@ public class ModPlacedFeatures {
                     InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
 
-    public static void register(IEventBus eventBus) {
-        PLACED_FEATURES.register(eventBus);
-    }
+    public static void register(IEventBus eventBus) { MOD_PLACED_FEATURES.register(eventBus); }
 }
