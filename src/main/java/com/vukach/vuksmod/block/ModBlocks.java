@@ -50,7 +50,23 @@ public class ModBlocks {
                 new Item.Properties().tab(tab)));
     }
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-    }
+	/** Registering Blocks Tooltip */
+	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, String tooltipKey) {
+		RegistryObject<T> toReturn = MOD_BLOCKS.register(name, block);
+		registerBlockItem(name, toReturn, tab, tooltipKey);
+		return toReturn;
+	}
+
+	private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab, String tooltipKey) {
+		ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
+				new Item.Properties().tab(tab)) {
+			@Override
+			public void appendHoverText(@NotNull ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltip, @NotNull TooltipFlag pFlag) {
+				pTooltip.add(Component.translatable(tooltipKey));
+			}
+		});
+	}
+
+	/** Registering ModBlocks himself */
+    public static void register(IEventBus eventBus) { MOD_BLOCKS.register(eventBus); }
 }
