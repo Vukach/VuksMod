@@ -1,19 +1,22 @@
 package com.vukach.vuksmod.item;
 
-import com.vukach.vuksmod.VukachMod;
 import com.vukach.vuksmod.item.custom.CreditCard;
 import com.vukach.vuksmod.item.custom.PlasticArmorItem;
 import com.vukach.vuksmod.item.custom.Plastic_Ripper;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static com.vukach.vuksmod.VukachMod.MOD_ID;
+
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, VukachMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     public static final RegistryObject<Item> CREDIT_CARD = ITEMS.register("creditcard",
             () -> new CreditCard(new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
@@ -64,7 +67,5 @@ public class ModItems {
     public static final RegistryObject<PlasticArmorItem> PLASTIC_CHEST = ITEMS.register("plastic_chest",
             () -> new PlasticArmorItem(ModArmorMaterials.Plastic, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModeTab.VUKS_TAB)));
 
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
-    }
+    public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }
