@@ -1,10 +1,8 @@
 package com.vukach.vuksmod.block;
 
-import com.vukach.vuksmod.VukachMod;
 import com.vukach.vuksmod.block.custom.ModTrashBagBlock;
 import com.vukach.vuksmod.item.ModCreativeModeTab;
 import com.vukach.vuksmod.item.ModItems;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -30,16 +28,6 @@ public class ModBlocks {
     public static final RegistryObject<ModTrashBagBlock> TRASH_BAG = registerBlock("trash_bag",
             () -> new ModTrashBagBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.VUKS_TAB);
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block,
-                                                                            CreativeModeTab tab, String tooltipKey) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(tab)) {
-            @Override
-            public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
-                pTooltip.add((Component) new TranslatableContents(tooltipKey));
-            }
-        });
-    }
 
 	/** Registering Blocks without Tooltip */
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
