@@ -20,9 +20,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.vukach.vuksmod.VukachMod.MOD_ID;
+
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, VukachMod.MOD_ID);
+    public static final DeferredRegister<Block> MOD_BLOCKS =
+            DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
 
     public static final RegistryObject<ModTrashBagBlock> TRASH_BAG = registerBlock("trash_bag",
             () -> new ModTrashBagBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.VUKS_TAB);
