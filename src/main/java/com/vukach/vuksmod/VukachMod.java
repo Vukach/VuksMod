@@ -1,10 +1,10 @@
 package com.vukach.vuksmod;
 
-import com.google.gson.JsonObject;
 import com.mojang.logging.LogUtils;
 import com.vukach.vuksmod.block.ModBlocks;
 import com.vukach.vuksmod.item.ModItems;
 import com.vukach.vuksmod.world.biomemods.ModBiomeModifiers;
+import com.vukach.vuksmod.world.feature.ModConfiguredFeatures;
 import com.vukach.vuksmod.world.feature.ModPlacedFeatures;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -31,6 +31,7 @@ public class VukachMod
         ModBlocks.register(modEventBus);
 
         ModBiomeModifiers.register(modEventBus);
+		ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);

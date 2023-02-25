@@ -1,42 +1,45 @@
 package com.vukach.vuksmod.block.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ModTrashBagBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public ModTrashBagBlock(Properties properties) {
-        super(properties);
-    }
+    public ModTrashBagBlock(Properties properties) { super(properties); }
 
-    private static final VoxelShape SHAPE =  Block.box(0, 0, 0, 16, 8, 16);
+    private static final VoxelShape SHAPE =  Block.box(1, 0, 1, 15, 13, 15);
+
+	/* RENDERING */
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel,
+										@NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         return SHAPE;
     }
 
-    /* FACING */
+	@Override
+	public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) { return RenderShape.MODEL; }
+
+	@Override
+	public boolean skipRendering(@NotNull BlockState blockState, @NotNull BlockState neighborState, @NotNull Direction pDirection) {
+		return false; // will prevent the "Spectator View" if the block faces are smaller than their neighbor
+	}
+
+
+	/* FACING */
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -44,30 +47,20 @@ public class ModTrashBagBlock extends BaseEntityBlock {
     }
 
     @Override
-    public BlockState rotate(BlockState pState, Rotation pRotation) {
+    public @NotNull BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
+    public @NotNull BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING);
-    }
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) { pBuilder.add(FACING); }
 
     /* BLOCK ENTITY */
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-        return null;
-    }
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) { return null; }
 }

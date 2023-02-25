@@ -1,5 +1,6 @@
 {
-  "type": "vuksmod:vegetal",
+  "type": "forge:add_features",
   "biomes": "#forge:is_plains",
-  "features": "trash_bag_placed"
+  "features": "vuksmod:trash_bag_placed",
+	"step": "vegetal_decoration"
 }

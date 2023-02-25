@@ -8,15 +8,16 @@ buildscript {
 
 plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'maven-publish'
     id 'eclipse'
 }
 
-version = '0.1-1.19'
-group = 'com.vukach' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "${mod_version}-${mc_version}"
+group = "${mod_group}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 
 java {
-    archivesBaseName = 'vuksmod'
+    archivesBaseName = "${mod_name}"
 
     // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -36,7 +37,9 @@ minecraft {
     //
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
+
     mappings channel: 'official', version: '1.19'
+    // mappings channel: 'parchment', version: "${parchmentDate}-${parchmentVersion}"
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -59,10 +62,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'vukachmod'
+            property 'forge.enabledGameTestNamespaces', 'vuksmod'
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -75,10 +78,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'vukachmod'
+            property 'forge.enabledGameTestNamespaces', 'vuksmod'
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -94,10 +97,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'vukachmod'
+            property 'forge.enabledGameTestNamespaces', 'vuksmod'
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -111,10 +114,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'vukachmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'vuksmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                vukachmod {
+                vuksmod {
                     source sourceSets.main
                 }
             }
@@ -134,16 +137,28 @@ repositories {
     //     dir 'libs'
     // }
 
-    maven { name = "GeckoLibs"; url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+    maven { name = "GeckoLib"; url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+
+    // JEI
+    maven { name = "Progwm16 JEI maven"; url = "https://dvs1.progwml6.com//files/maven/" }
+    // location of the maven that hosts JEI files since January 2023
+    maven { name = "Jared's maven";     url = "https://maven.blamejared.com/" }
+    // JEI fall back
+    maven { name = "ModMaven";          url = "https://modmaven.dev" }
+
+    // Maven via Curse-Maven & CurseForge
+    maven { name = "Curse Maven";       url = "https://cursemaven.com"; content { includeGroup "curse.maven" } }
 }
 
 dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.19-41.1.0'
 
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.19')
+    // minecraft 'net.minecraftforge:forge:1.19.2-43.2.6'
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.40')
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -156,18 +171,43 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    // JEI at compiling
+    // compileOnly fg.deobf("mezz.jei:jei-${minecraftVersion}:${jeiVersion}:api")
+    // JEI at runtime
+    // runtimeOnly fg.deobf("mezz.jei:jei-${mcMappingVersion}-forge:${jeiVersion}")
+    // JEI - Just Enough Items as implementation
+    // implementation fg.deobf("curse.maven:jei-238222:3838014")
+    runtimeOnly fg.deobf("curse.maven:jei-${jeiVersionCF}")
+
+    // Catalogue
+    runtimeOnly fg.deobf("curse.maven:catal-${catalVersionCF}")
+
+    // Configured
+    runtimeOnly fg.deobf("curse.maven:conf-${confVersionCF}")
+
+    // Jade (Hwyla/Waila Fork)
+    runtimeOnly fg.deobf("curse.maven:jade-${jadeVersionCF}")
+
+    // ATM -  Simple Recipes (JMSR) & Slabs 'n Stairs
+    runtimeOnly fg.deobf("curse.maven:atmjmsr-${atmjmsrVersionCF}")
+    // runtimeOnly fg.deobf("curse.maven:sns-${snsVersionCF}")
+
+    // Xaero's World- and Mini Maps
+    runtimeOnly fg.deobf("curse.maven:xWmap-${xWmapVersionCF}")
+    runtimeOnly fg.deobf("curse.maven:xMmap-${xMmapVersionCF}")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "vukachmod",
-                "Specification-Vendor"    : "vukachmodsareus",
+                "Specification-Title"     : "${mod_name}",
+                "Specification-Vendor"    : "${mod_owner}",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "vukachmodsareus",
+                "Implementation-Vendor"   : "${mod_owner}",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
@@ -187,7 +227,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url "file://${project.projectDir}/maven"
         }
     }
 }
