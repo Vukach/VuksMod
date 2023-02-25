@@ -17,6 +17,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
+import static com.vukach.vuksmod.VukachMod.MOD_ID;
+
 public class ModConfiguredFeatures {
 
 	public static final DeferredRegister<ConfiguredFeature<?, ?>> MOD_CONFIGURED_FEATURES =
